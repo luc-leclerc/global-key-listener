@@ -2,7 +2,13 @@
 Learning to do JNI and use native windows lib to capture key presses. 
 The issues listed in this README.md are about the problems I encountered from testing this.
 
-Done on windows 7 SP1
+Done on windows 7 SP1.
+
+After checking out the project :
+* Configure the project to have the java.library.path reference the .dll (All IDE)
+
+For eclipse users:
+* Right+Click on project -> Configure -> Convert to maven project (Eclipse)
 
 # Generating the C header file
 
