@@ -1,4 +1,4 @@
-//#include <jni.h>
+#include <jni.h>
  #include <stdio.h>
  #include "com_lleclerc_jnilink_SayHelloMain.h"
   
