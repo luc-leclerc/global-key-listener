@@ -10,7 +10,7 @@ public class SayHelloMain {
 
 	public static void main(String[] args) {
 		System.out.println("Main - Start");
-//		System.out.println("Main - " + new SayHelloMain().sayHello("Bob"));
+		System.out.println("Main - " + new SayHelloMain().sayHello("Bob"));
 		System.out.println("Main - End");
 	}
 
