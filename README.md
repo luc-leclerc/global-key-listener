@@ -1,6 +1,6 @@
 # jnilink
-Learning to do JNI and use native windows lib to capture key presses. 
-The issues listed in this README.md are about the problems I encountered from testing this.
+Learning to do JNI and use native windows lib to capture key presses within an IDE (Eclipse)
+The issues listed in this README.md are about the problems I encountered from testing various tutorials.
 
 Done on windows 7 SP1.
 
@@ -40,8 +40,10 @@ Resulted in file: git\global-key-listener\NativeC\com\_lleclerc\_jnilink_SayHell
 * Installed an IDE Eclipse C/C++ (http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/mars1)
 * Installed MinGW & MSYS (mingw-get-setup.exe - https://sourceforge.net/projects/mingw/files/Installer/) 
     * It's a tool to download the actual packages we want (dont uncheck the user interface)
-    * Open it from the icon on desktop and go in Basic Setup, and "Mark for installations" the packages "mingw-developer-toolkit", "mingw32-base" and "msys-base".
-    * Added C:\MinGW\bin to environment variable PATH and restarted eclipse CDT.
+    * Open it from the icon on desktop and go in Basic Setup, and "Mark for installations" the packages "mingw-developer-toolkit", "mingw32-base", "mingw32-gcc-g++" and "msys-base".
+    * Added env. variables: MINGW64\_HOME=C:\mingw64 and PATH+=%MINGW64_HOME%\bin
+    * In eclipse, changed config, Windows -> Preferences -> C/C++ -> Build -> Environment -> Add PATH with value "$PATH;C:\mingw64\bin"
+* Installed "mingw-w64" (https://sourceforge.net/projects/mingw-w64/)
 * Restart eclipse and create new shared lib with "MinGW GCC".
 
 Issue #1 : Which "Project type" to pick.
@@ -54,6 +56,7 @@ Cannot run program "cl": Launching failed
 
 Error: Program "cl" not found in PATH
 ```
+By installing MinGW the new option "MinGW GCC" appeared in Eclipse CDT.
 
 Issue #3 : Can't find jni.h
 ```
@@ -87,6 +90,7 @@ Exception in thread "main" java.lang.UnsatisfiedLinkError: C:\Users\Undefined\gi
 	at java.lang.System.loadLibrary(System.java:1122)
 	at com.lleclerc.jnilink.SayHelloMain.<clinit>(SayHelloMain.java:6)
 ```
+Downloaded and installed "mingw-w64" and moved the "mingw64" folder on the C:/. 
 
 ## Build the project in Eclipse
 ## 
