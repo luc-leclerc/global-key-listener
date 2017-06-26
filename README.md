@@ -96,5 +96,13 @@ Exception in thread "main" java.lang.UnsatisfiedLinkError: C:\Users\Undefined\gi
 ```
 Downloaded and installed "mingw-w64" and moved the "mingw64" folder on the C:/. 
 
+Issue #6 : Method in .c not matching .h
+```
+Exception in thread "main" java.lang.UnsatisfiedLinkError: com.lleclerc.jnilink.SayHelloMain.sayHello(Ljava/lang/String;)Ljava/lang/String;
+	at com.lleclerc.jnilink.SayHelloMain.sayHello(Native Method)
+	at com.lleclerc.jnilink.SayHelloMain.main(SayHelloMain.java:13)
+```
+
+
 ## Build the project in Eclipse
 ## 
