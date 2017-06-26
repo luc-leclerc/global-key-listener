@@ -4,17 +4,21 @@ The issues listed in this README.md are about the problems I encountered from te
 
 Done on windows 7 SP1.
 
-After checking out the project :
-* Configure the project to have the java.library.path reference the .dll (All IDE)
-
-For eclipse users:
-* Right+Click on project -> Configure -> Convert to maven project (Eclipse)
+* Java Project
+    * After checking out the project, configure the project to have the java.library.path reference the .dll (All IDE)
+    * For eclipse users, Right+Click on project -> Configure -> Convert to maven project (Eclipse)
+* C Project
+    * Located within this project under git/jnilink_cproject
+    * This project isn't clean and contains the -dot-files related to my eclipse version.
+* Lib
+    * Contains a copy of the .h library generated.
+    * Contains a copy of the .dll generated.
 
 # Generating the C header file
 
 ```
 cd C:\Users\Undefined\git\global-key-listener\target\classes
-javah -jni -classpath "C:\Users\Undefined\git\global-key-listener\target\classes" com.com.lleclerc.jnilink.SayHelloMain
+javah -jni -classpath "C:\Users\Undefined\git\global-key-listener\target\classes" com.lleclerc.jnilink.SayHelloMain
 ```
 
 Issue #1 : Bad usage of javah (Must not call it from current directory, go up the package folders)
@@ -33,7 +37,7 @@ Exception in thread "main" java.lang.IllegalArgumentException: Not a valid class
         at com.sun.tools.javah.JavahTask.run(JavahTask.java:329)
         at com.sun.tools.javah.Main.main(Main.java:46)
 ```
-Resulted in file: git\global-key-listener\NativeC\com\_lleclerc\_jnilink_SayHelloMain.h
+Resulted in file: git\jnilink\lib\com\_lleclerc\_jnilink_SayHelloMain.h
 
 # Building the C app
 
@@ -76,13 +80,13 @@ Exception in thread "main" java.lang.UnsatisfiedLinkError: no lib/libAnswerHello
 	at java.lang.System.loadLibrary(System.java:1122)
 	at com.lleclerc.jnilink.SayHelloMain.<clinit>(SayHelloMain.java:6)
 ```
-Fixed this by setting the workspace location "jnilink/NativeC" in both Native libraries locations for test and run.
+Fixed this by setting the workspace location "jnilink/lib" in both Native libraries locations for test and run.
 * Right+Click on project -> Build Path.. -> Configure Build Path -> jnilink/src/main/java -> Native libraries location
 * Right+Click on project -> Build Path.. -> Configure Build Path -> jnilink/src/test/java -> Native libraries location
 
 Issue #5 : The library isn't in 64-bit.
 ```
-Exception in thread "main" java.lang.UnsatisfiedLinkError: C:\Users\Undefined\git\global-key-listener\NativeC\libAnswerHelloMinGWSharedLib.dll: Can't load IA 32-bit .dll on a AMD 64-bit platform
+Exception in thread "main" java.lang.UnsatisfiedLinkError: C:\Users\Undefined\git\jnilink\lib\libAnswerHelloMinGWSharedLib.dll: Can't load IA 32-bit .dll on a AMD 64-bit platform
 	at java.lang.ClassLoader$NativeLibrary.load(Native Method)
 	at java.lang.ClassLoader.loadLibrary0(ClassLoader.java:1938)
 	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1854)
